@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe160acc05d4d944ab7ba250800613e, type: 3}
   m_Name: LibreriaArboles
   m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 6424510014950280188, guid: f0cf6019f78c3224bb8df95904197e70, type: 3}
