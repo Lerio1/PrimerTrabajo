@@ -47,14 +47,16 @@ public class Arbol : MonoBehaviour
     void Muere()
     {
         onDead.Invoke();                            // cuando se queda sin hp se ejecuta este evento
+
     }
 
     void Caida()
     {
-        SpawnearElOtroArbol();
+        //SpawnearElOtroArbol();
         //agregar madera a inventario
         GameManager.gm.AgregarMadera(dropValue);
         onCaida.Invoke();                           // este evento se manda a llamar desde la animación de caida
+        GameManager.gm.SpawnearArbol();
     }
 
     void MostrarTextoDaño(int cantidad)
