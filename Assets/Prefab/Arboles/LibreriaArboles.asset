@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: LibreriaArboles
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 6424510014950280188, guid: f0cf6019f78c3224bb8df95904197e70, type: 3}
+  - {fileID: 7796400867363206018, guid: 66f4558e8628dd444bb0683a35b4aced, type: 3}
+  - {fileID: 2683638073932904265, guid: d2f72ecdfed209140804ca66590144b1, type: 3}
+  - {fileID: 7796400867363206018, guid: 66f4558e8628dd444bb0683a35b4aced, type: 3}
+  - {fileID: 2683638073932904265, guid: d2f72ecdfed209140804ca66590144b1, type: 3}

@@ -6,7 +6,7 @@ TextureImporter:
       213: 2747690628134850419
     second: Hexagon Flat-Top
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -66,6 +66,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -115,40 +116,46 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hexagon Flat-Top
+      name: HexagonFlatTop_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 15
+        y: 127
         width: 256
-        height: 226
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -65, y: 113}
-        - {x: -128, y: 4}
-        - {x: -128, y: -4}
-        - {x: -65, y: -113}
-        - {x: 65, y: -113}
-        - {x: 128, y: -4}
-        - {x: 128, y: 4}
-        - {x: 65, y: 113}
-      physicsShape:
-      - - {x: -64, y: 111}
-        - {x: -128, y: 0}
-        - {x: -64, y: -111}
-        - {x: 64, y: -111}
-        - {x: 128, y: 0}
-        - {x: 64, y: 111}
+      - - {x: 69, y: 56.5}
+        - {x: -70, y: 56.5}
+        - {x: -118, y: -14.5}
+        - {x: -128, y: -45.5}
+        - {x: -128, y: -56.5}
+        - {x: 128, y: -56.5}
+        - {x: 128, y: -44.5}
+        - {x: 71, y: 53.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37fc5a28112c12620800000000000000
-      internalID: 2747690628134850419
+      spriteID: 509540d4e6942e643a2b28740d2dc975
+      internalID: 559067408
       vertices: []
       indices: 
       edges: []
@@ -178,7 +185,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Hexagon Flat-Top: 2747690628134850419
+      HexagonFlatTop_0: 559067408
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -12,14 +12,22 @@ public class GameManager : MonoBehaviour
     public LibreriaPrefab arboles;
     public Transform spawnPoint;
     public Transform parentArbol;
+    public int initialValue;
+    public GameObject[] arbolesPrefabs;
     private void Awake()
     {
         gm = this;
+        {
+            initialValue = madera.valor;
+            madera.valor = 5;
+        }
     }
+
 
     public void OnGameStart()
     {
         onGameStart.Invoke();
+
     }
 
 
@@ -36,20 +44,30 @@ public class GameManager : MonoBehaviour
 
     public void AgregarMadera(int _cantidad)
     {
-        madera.valor += _cantidad;
+        if (madera.valor < 5)
+        {
+            madera.valor += _cantidad;
+        }
+
+
     }
 
+    IEnumerator MoverDespuesDeEspera(float espera, Vector3 direccion)
+    {
+        yield return new WaitForSeconds(espera);
+        parentArbol.transform.position += direccion;
+    }
     public void SpawnearArbol()
     {
         Vector3 posicionDelOtroArbol = spawnPoint.position;
-       // posicionDelOtroArbol.x += Random.Range(0, 0);
 
-        GameObject elOtroArbolito = Instantiate(arboles.prefab, posicionDelOtroArbol, Quaternion.identity);
-        elOtroArbolito.SetActive(true);
+        // Elegir un índice de árbol al azar
+        int indiceAleatorio = Random.Range(0, arbolesPrefabs.Length);
 
-       // elOtroArbolito.transform.localScale = Vector3.one * Random.Range(.7f, 1.5f);
-
-       // elOtroArbolito.GetComponent<Arbol>().ResetearHp();
-       elOtroArbolito.transform.parent = parentArbol;
+        // Instanciar el árbol seleccionado
+        GameObject arbolElegido = Instantiate(arbolesPrefabs[indiceAleatorio], posicionDelOtroArbol, Quaternion.identity);
+        arbolElegido.SetActive(true);
+        arbolElegido.transform.parent = parentArbol;
+        StartCoroutine(MoverDespuesDeEspera(0.2f, new Vector3(-10f, 0f, 0f)));
     }
 }
