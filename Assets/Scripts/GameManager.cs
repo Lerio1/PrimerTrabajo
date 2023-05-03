@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,22 +15,25 @@ public class GameManager : MonoBehaviour
     public Transform parentArbol;
     public int initialValue;
     public GameObject[] arbolesPrefabs;
+    public GameObject ardillaImage;
+    public GameObject leñadorImage;
+    public string Victory;
+
+    public MoveBackground[] moveBackgrounds;
+
     private void Awake()
     {
         gm = this;
         {
             initialValue = madera.valor;
-            madera.valor = 5;
+            madera.valor = 3;
         }
     }
-
 
     public void OnGameStart()
     {
         onGameStart.Invoke();
-
     }
-
 
     public void OnGameOver()
     {
@@ -41,22 +45,26 @@ public class GameManager : MonoBehaviour
         onGameRestart.Invoke();
     }
 
-
     public void AgregarMadera(int _cantidad)
     {
         if (madera.valor < 5)
         {
             madera.valor += _cantidad;
         }
-
-
     }
-
-    IEnumerator MoverDespuesDeEspera(float espera, Vector3 direccion)
+    private void Update()
     {
-        yield return new WaitForSeconds(espera);
-        parentArbol.transform.position += direccion;
+        // Verificar si las imágenes se superponen
+        RectTransform ardillaRect = ardillaImage.GetComponent<RectTransform>();
+        RectTransform leñadorRect = leñadorImage.GetComponent<RectTransform>();
+        if (RectTransformUtility.RectangleContainsScreenPoint(ardillaRect, leñadorRect.position))
+        {
+            // Cambiar la escena del juego
+            SceneManager.LoadScene(Victory);
+           // Debug.Log("Si funciona");
+        }
     }
+
     public void SpawnearArbol()
     {
         Vector3 posicionDelOtroArbol = spawnPoint.position;
@@ -68,6 +76,35 @@ public class GameManager : MonoBehaviour
         GameObject arbolElegido = Instantiate(arbolesPrefabs[indiceAleatorio], posicionDelOtroArbol, Quaternion.identity);
         arbolElegido.SetActive(true);
         arbolElegido.transform.parent = parentArbol;
-        StartCoroutine(MoverDespuesDeEspera(0.2f, new Vector3(-10f, 0f, 0f)));
+
+        StartCoroutine(MoverArbolYFondo());
+        // Mueve el icono del leñador una distancia específica
+        GameObject.Find("IconoLeñador").GetComponent<MoverLeñador>().MoverLenador();
+    }
+
+    IEnumerator MoverArbolYFondo()
+    {
+        // Esperar 0.2 segundos antes de mover el árbol
+        yield return new WaitForSeconds(0.2f);
+
+        // Mover el árbol hacia la izquierda
+        Vector3 direccion = new Vector3(-10f, 0f, 0f);
+        parentArbol.transform.position += direccion;
+
+        // Esperar 0.3 segundos antes de empezar a mover el fondo
+        yield return new WaitForSeconds(0f);
+
+        // Mover el fondo durante 0.5 segundos
+        float tiempoMoverFondo = 0.5f;
+        float tiempoTranscurrido = 0f;
+        while (tiempoTranscurrido < tiempoMoverFondo)
+        {
+            foreach (MoveBackground mb in moveBackgrounds)
+            {
+                mb.MoverFondo();
+            }
+            tiempoTranscurrido += Time.deltaTime;
+            yield return null;
+        }
     }
 }

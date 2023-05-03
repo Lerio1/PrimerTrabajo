@@ -6,6 +6,9 @@ public class HachaPlayer : MonoBehaviour
 {
     public Animator animator;
     public ComprarHacha comprarHacha;
+    public GameObject broken;
+    public AudioClip audioClip;
+
 
     public bool hasAxe = true;
 
@@ -56,6 +59,8 @@ public class HachaPlayer : MonoBehaviour
             HachaRota();
             animator.Play("HachaRota");
 
+            broken.GetComponent<AudioSource>().PlayOneShot(audioClip);
+            Debug.Log("Si funciona la wea");
         }
     }
 
@@ -63,6 +68,10 @@ public class HachaPlayer : MonoBehaviour
     public void HachaRota()
     {
         hasAxe = false;
+        broken.GetComponent<AudioSource>().PlayOneShot(audioClip);
+        Debug.Log("Si funciona la wea");
+
+
     }
 
     // Este método se llama cuando se compra un hacha
